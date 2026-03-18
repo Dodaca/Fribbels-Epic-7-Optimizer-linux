@@ -5,7 +5,7 @@ This is a tool for organizing gear and optimizing gear and unit builds for Epic 
 Please see the [**Getting Started**](https://github.com/fribbels/Fribbels-Epic-7-Optimizer#getting-started) section for instructions on how to use the optimizer.
 
 Features include:
- - Automatically import gear and heroes from the game
+ - Automatically import gear and heroes from the game(Currently not working in this version)
  - Filter gear optimizer with main stats/sub stats/sets/etc
  - Automatic data updates for new heroes
  - Hero bonus stats for imprints/artifacts/EEs
@@ -18,11 +18,20 @@ Here's what it looks like currently:
 
 ![](https://i.imgur.com/vQ3tnol.png)
 
-## Requirements
-- 64-bit Windows or MacOS
-- Java 8+, 64-Bit installed (Please download if you don't yet have it: https://java.com/en/download/manual.jsp. For Windows, use the 'Windows Offline (64-bit)' installer)
+# Linux Specific parts
+Most of the code relating to file paths have been changed to use nodes path module for cross compatibility. GPU acceleration works as long as you have an opencl implementation(Unfortunately this does not include Nvidia GPUs). The Scapy packet capture is working although the program will ask for Password to run the required Python script with elevated Permissions. 
+While Data is capture once Epic7 is opened the Program fails to correctly read the data. Will have to look into why that happens. As such unfortunately the Auto importer is not working at the moment.
 
-Check out the step-by-step video guide on how to install the app: https://www.youtube.com/watch?v=bDjP5eiOfK0
+## TODO
+ - Test if auto updating with new units is working
+ - Look into the gear importer and see why no Gear is being dedected inside the packages
+
+## Requirements
+- 64-bit Linux Installation
+- Java 8+, 64-Bit installed (jre8-openjdk works as well)
+- System wide Python3 with Scapy as a global package (Or setup an virtenv were the Program can access such an environment as it checks Python and Python3 in console)
+
+
 
 _________________
 
