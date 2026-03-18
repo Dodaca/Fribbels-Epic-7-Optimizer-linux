@@ -95,5 +95,11 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: yarn package 
           #npx electron-builder build --linux zip --x64 --publish always
+
+      - name: Upload to github(Linux)
+        uses: xresloader/upload-to-github-release@v1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "*.zip;"
+
