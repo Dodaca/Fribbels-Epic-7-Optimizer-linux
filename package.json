@@ -105,10 +105,11 @@
       }
     },
     "linux": {
-      "target": [
-        "dir"
-      ],
-      "category": "Development"
+      "target": {
+        "target": "dir",
+        "arch":["x64"]
+
+      }
     },
     "directories": {
       "buildResources": "resources",
