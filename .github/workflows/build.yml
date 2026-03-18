@@ -31,6 +31,7 @@ jobs:
           cd backend
           mvn package
           cp target/backend-1.0.jar ../data/jar/backend.jar
+          cd ..
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -101,7 +102,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "*.zip;"
+          file: "release/*.zip;"
           overwrite: true
           verbose: true
           tags: true
