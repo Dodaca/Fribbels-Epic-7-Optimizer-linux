@@ -104,12 +104,14 @@
         ]
       }
     },
-    "linux": {
-      "target": {
-        "target": ["dir", "appimage", "zip"],
-        "arch":["x64"]
-
-      }
+"linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage",
+        "zip"
+      ],
+      "category": "Development"
     },
     "directories": {
       "buildResources": "resources",
