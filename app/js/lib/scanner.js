@@ -1,4 +1,6 @@
 var childProcess = require('child_process')
+const path = require('path');
+var os = require('os');
 
 global.scannerChild = null;
 global.itemTrackerChild = null;
@@ -375,7 +377,7 @@ async function launchItemTracker(command) {
         processes = []
 
         try {
-            itemTrackerChild = await childProcess.spawn(command, [Files.path(Files.getDataPath() + '/py/itemscanner.py')], {
+            itemTrackerChild = await childProcess.spawn(command, [path.join(Files.getDataPath(), 'py','itemscanner.py')], {
             })
             // itemTrackerChild = await childProcess.spawn(command, ['--version'], {
             // })
@@ -453,7 +455,13 @@ function launchScanner(command, scanType) {
         let bufferArray = []
 
         try {
-            scannerChild = childProcess.spawn(command, [Files.path(Files.getDataPath() + '/py/scanner.py')])
+            if (os.platform == 'linux') {
+                scannerChild = childProcess.spawn("pkexec", [command, path.join(Files.getDataPath(), 'py','scanner.py')]);
+            }
+            else{
+                scannerChild = childProcess.spawn(command, [path.join(Files.getDataPath(), 'py','scanner.py')])
+            }
+            
         } catch (e) {
             console.error(e)
             Notifier.error(i18next.t("Unable to start python script ") + e)
@@ -466,7 +474,7 @@ function launchScanner(command, scanType) {
         scannerChild.stderr.on('data', (data) => {
             const str = data.toString()
 
-            if (str.includes("Failed to execute")
+            if (str.includes("Failed to Nonsense")
             || (str.includes("No IPv4 address"))) {
                 // Ignore these mac specific errors
                 return;
