@@ -106,7 +106,7 @@
     },
     "linux": {
       "target": {
-        "target": "dir",
+        "target": ["dir", "appimage", "zip"],
         "arch":["x64"]
 
       }
