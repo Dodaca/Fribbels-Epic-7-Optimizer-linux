@@ -1,12 +1,13 @@
 const remote = require('@electron/remote');
 const dialog = remote.dialog
 const currentWindow = remote.getCurrentWindow();
+const path = require('path');
 const documentsPath = remote.app.getPath('documents');
-const savesFolder = documentsPath + '/FribbelsOptimizerSaves';
+const savesFolder = path.join(documentsPath, 'FribbelsOptimizerSaves');
 
 const defaultPath = savesFolder;
 
-const settingsPath = defaultPath + "/settings.ini";
+const settingsPath = path.join(defaultPath,"settings.ini");
 var pathOverride;
 
 var excludeSelects = [];
@@ -203,8 +204,8 @@ module.exports = {
             settingDefaultEquippedItems: settings.settingDefaultEquippedItems,
             settingDefaultKeepCurrent: settings.settingDefaultKeepCurrent
         }
-        pathOverride = settings.settingDefaultPath;
-
+        pathOverride = defaultPath;
+        console.warn("Default Path is: " + defaultPath);
         console.warn("changing path override to: " + pathOverride);
 
         if (isNullUndefined(settings.settingPenSet)) {
