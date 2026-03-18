@@ -1,8 +1,8 @@
 {
-  "name": "fribbels-e7-optimizer",
+  "name": "fribbels-e7-optimizer-linux",
   "productName": "Fribbels E7 Optimizer",
   "author": {
-    "name": "Fribbels"
+    "name": "Dodaca"
   },
   "version": "1.0.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
@@ -106,7 +106,7 @@
     },
     "linux": {
       "target": [
-        "AppImage"
+        "dir"
       ],
       "category": "Development"
     },
