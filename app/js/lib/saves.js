@@ -63,7 +63,7 @@ module.exports = {
         document.getElementById('saveDataSubmit').addEventListener("click", async () => {
             const options = {
                 title: "Save file",
-                defaultPath : Files.path(Settings.getDefaultPath() + "/" + getDateString() + '-export.json'),
+                defaultPath : path.join(Settings.getDefaultPath(), getDateString() + '-export.json'),
                 buttonLabel : "Save file",
                 filters :[
                     {name: 'JSON', extensions: ['json']},

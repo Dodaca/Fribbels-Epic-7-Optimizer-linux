@@ -65,8 +65,12 @@ module.exports = {
         return os.platform() == 'darwin';
     },
 
+    isLinux: () => {
+        return os.platform() == 'linux';
+    },
+
     path: (path) => {
-        return module.exports.isMac() ?
+        return module.exports.isLinux() ?
                 path.replace(/\//g, "/") :
                 path.replace(/\//g, "\\");
     },
