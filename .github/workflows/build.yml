@@ -90,6 +90,6 @@ jobs:
 
       - name: Build Electron App (Linux)
         if: matrix.os == 'ubuntu-latest'
-        run: npx electron-builder build --linux --dir --x64 --publish always
+        run: npx electron-builder build --linux --x64 --publish always
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
