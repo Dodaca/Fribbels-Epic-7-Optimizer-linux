@@ -57,3 +57,8 @@ npm-debug.log.*
 # .vscode
 .vscode
 .idea
+backend/target/backend-1.0.jar
+backend/target/original-backend-1.0.jar
+backend/target/maven-archiver/pom.properties
+backend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+backend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst

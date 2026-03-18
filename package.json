@@ -1,8 +1,8 @@
 {
-  "name": "fribbels-e7-optimizer",
-  "productName": "Fribbels E7 Optimizer",
+  "name": "fribbels-e7-optimizer-linux",
+  "productName": "Fribbels E7 Optimizer for Linux",
   "author": {
-    "name": "Fribbels"
+    "name": "Fribbels changed by Dodaca"
   },
   "version": "1.0.0",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
@@ -106,7 +106,7 @@
     },
     "linux": {
       "target": [
-        "AppImage"
+        "zip"
       ],
       "category": "Development"
     },
@@ -123,7 +123,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "fribbels",
+      "owner": "RexQian",
       "repo": "Fribbels-Epic-7-Optimizer",
       "private": false
     }
@@ -232,7 +232,7 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.14.1",
+    "sass": "^1.69.0",
     "opencollective-postinstall": "^2.0.3",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^2.0.5",
