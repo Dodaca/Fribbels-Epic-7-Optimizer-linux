@@ -303,6 +303,7 @@ async function finishedReading(data, scanType) {
         });
         console.log(response);
 
+
         if (response.status == "SUCCESS") {
             const equips = response.data || [];
             const units = response.units || [];
@@ -359,6 +360,7 @@ No items were found during the scan. This can happen due to network compatibilit
 global.finishedReading = finishedReading;
 
 async function launchItemTracker(command) {
+     console.log("Item Tracker started.")
     try {
         // $('#detectorStatus').html("Loading");
         $('#statusText').html("Status: Loading");
@@ -491,9 +493,12 @@ function launchScanner(command, scanType) {
 
             if (message.includes('DONE')) {
                 console.log(bufferArray.join('').split('&').filter(x => !x.includes('DONE')))
-                data = bufferArray.join('').split('&').filter(x => !x.includes('DONE')).map(x => x.replace(/\s/g,''))
+                if (os.platform == 'linux') {
+                data = bufferArray.join('').split('&').filter(x => !x.includes('DONE')).map(x => x.replace('\n', '\r\n')).map(x => x.replace(/\s+/g,'')) //Why das replacing "\n" with "\r\n" work if we literally remove it right after.... Maybe array size changes? Fuck it it works i guess.
+            }
+                else{ data = bufferArray.join('').split('&').filter(x => !x.includes('DONE')).map(x => x.replace(/\s+/g,''))
                 // data = bufferArray.join('').split('&').filter(x => !x.includes('DONE')).map(x => x.replaceAll('↵', '')).map(x => x.replaceAll('\n', '')).map(x => x.replaceAll('\r', ''))
-                finishedReading(data, scanType);
+                }finishedReading(data, scanType);
             } else {
                 data.push(message);
             }
