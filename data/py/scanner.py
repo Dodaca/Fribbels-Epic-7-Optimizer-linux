@@ -69,7 +69,7 @@ def thread_sniff():
         # This may lead to more processing but prevents needing to specify an network interface manually in some cases.
         if sys.platform == 'linux':
             #use waydroid0 for linux
-            sniff(iface='waydroid0', prn=lambda x: check_packet(x), filter="tcp and ( port 5222 or port 3333)", session = TCPSession)
+            sniff(iface=get_working_ifaces(), prn=lambda x: check_packet(x), filter="tcp and ( port 5222 or port 3333)", session = TCPSession) #
         else:
             sniff(iface=get_working_ifaces(), prn=lambda x: check_packet(x), filter="tcp and ( port 5222 or port 3333 )", session=TCPSession)
     except:

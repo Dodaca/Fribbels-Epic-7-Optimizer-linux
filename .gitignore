@@ -1,8 +1,7 @@
 backend/.idea/workspace.xml
 backend/.idea/workspace.xml~
 backend/target/classes/*
-out
-backend.jar
+out/artifact/backend.jar
 # Logs
 logs
 *.log
