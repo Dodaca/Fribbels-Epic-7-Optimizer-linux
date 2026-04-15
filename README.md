@@ -19,12 +19,12 @@ Here's what it looks like currently:
 ![](https://i.imgur.com/vQ3tnol.png)
 
 # Linux Specific parts
-Most of the code relating to file paths have been changed to use nodes path module for cross compatibility. GPU acceleration works as long as you have an opencl implementation(Unfortunately this does not include Nvidia GPUs). The Scapy packet capture is working although the program will ask for Password to run the required Python script with elevated Permissions. 
-While Data is capture once Epic7 is opened the Program fails to correctly read the data. Will have to look into why that happens. As such unfortunately the Auto importer is not working at the moment.
+Most of the code relating to file paths have been changed to use nodes path module for cross compatibility. GPU acceleration works as long as you have an opencl implementation. The Scapy packet capture is working although the program will ask for Password to run the required Python script with elevated Permissions.
+The Data capture, at least on my system, seems to be somewhat unstable. Make sure your system is running stable and your internet connection is properly setup. Due to running the Pythons script with elevated privilages it should work out of the box with most NFtable and IPtable firewall setup
 
 ## TODO
  - Test if auto updating with new units is working
- - Look into the gear importer and see why no Gear is being dedected inside the packages
+ - Bugfixing to a certain extend.
 
 ## Requirements
 - 64-bit Linux Installation
@@ -274,6 +274,17 @@ Please read these instructions carefully! Here is a step by step video guide to 
 
 ### Installing the app
 
+#### Linux
+
+64 bit Java8 enviroment required.
+
+Install  **jre8-openjdk** through your systems package manager.
+For Arch based system the command should be as follows:
+
+    sudo pacman -S jre8-openjdk jdk8-openjdk
+
+Consult your Distributions Package Hub for more information how to install the package. (Word of caution do NOT install using Flatpack or something similarly sandboxed unless you know what you're doing.)
+
 #### Windows
 
 64 bit Java 8 or above is required:
@@ -300,6 +311,15 @@ _________________
 ### Setting up the auto importer
 
 The automatic importer is recommended and requires these additional steps:
+
+##### First time setup for the automatic importer on Linux
+
+1. Install a **Python 3.4+** Version. Depending on your System it might come with a Version preinstalled. Look into option like [venv](https://docs.python.org/3/library/venv.html) if your system instillation is causing trouble or one can't install scapy package directly into it due to other dependencies.
+2. Install and up to date **scapy** python package. If one created a virtual enviremment using **venv** use **pip install scapy** within that activated environment. Otherwise Inform yourself regarding your Distributions best practice to install packages into your System Python version, usually through the package manager.
+
+In case of Arch based System the command should be as follows:
+
+    sudo pacman -S scapy
 
 ##### First time setup for the automatic importer on Windows
 
