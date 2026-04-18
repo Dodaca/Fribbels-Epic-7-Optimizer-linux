@@ -91,3 +91,6 @@ while loop:
         loop = False
         print("DONE\n")
         sys.stdout.flush()
+        time.sleep(2)
+        terminate()
+        
