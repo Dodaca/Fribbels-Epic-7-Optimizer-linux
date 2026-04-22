@@ -29,7 +29,7 @@ The Data capture, at least on my system, seems to be somewhat unstable. Make sur
 ## Requirements
 - 64-bit Linux Installation
 - Java 8+, 64-Bit installed (jre8-openjdk works as well)
-- System wide Python3 with Scapy as a global package (Or setup an virtenv were the Program can access such an environment as it checks Python and Python3 in console)
+- System wide Python3 Installation (If you run into Problems with the import try installing a gloabl Scapy version)
 
 
 
@@ -53,9 +53,11 @@ _________________
     + [Save or Load all optimizer data](#save-or-load-all-optimizer-data)
   * [Getting Started](#getting-started)
     + [Installing the app](#installing-the-app)
+      - [Linux](#linux)
       - [Windows](#windows)
       - [Mac OS](#mac-os)
     + [Setting up the auto importer](#setting-up-the-auto-importer)
+        * [First time setup for the automatic importer on Linux](#first-time-setup-for-the-automatic-importer-on-linux) 
         * [First time setup for the automatic importer on Windows](#first-time-setup-for-the-automatic-importer-on-windows)
         * [First time  setup for the automatic importer on Mac](#first-time--setup-for-the-automatic-importer-on-mac)
     + [Using the auto importer](#using-the-auto-importer)
@@ -314,8 +316,8 @@ The automatic importer is recommended and requires these additional steps:
 
 ##### First time setup for the automatic importer on Linux
 
-1. Install a **Python 3.4+** Version. Depending on your System it might come with a Version preinstalled. Look into option like [venv](https://docs.python.org/3/library/venv.html) if your system instillation is causing trouble or one can't install scapy package directly into it due to other dependencies.
-2. Install and up to date **scapy** python package. If one created a virtual enviremment using **venv** use **pip install scapy** within that activated environment. Otherwise Inform yourself regarding your Distributions best practice to install packages into your System Python version, usually through the package manager.
+1. Install a **Python 3.4+** Version. Depending on your System it might come with a Version preinstalled. Look into option like [venv](https://docs.python.org/3/library/venv.html), [pyenv](https://realpython.com/intro-to-pyenv/) or even [uv](https://archlinux.org/packages/extra/x86_64/python-uv/) if your system instillation is causing trouble or is incompatible
+2. (Optional) Install and up to date **scapy** python package. If one created a virtual enviremment using **venv** use **pip install scapy** within that activated environment. Otherwise Inform yourself regarding your Distributions best practice to install packages into your System Python version, usually through the package manager.
 
 In case of Arch based System the command should be as follows:
 
