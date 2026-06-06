@@ -371,6 +371,8 @@ const nameBySetByGear = {
         RiposteSet: "Bow of Agony",
         WarfareSet: "Bow of Agony",
         PursuitSet: "Bow of Agony",
+        WeakeningSet: "Weakening Weapon Core",
+        FervorSet: "Fervor Weapon Core",
     },
     Helmet: {
         HealthSet: "Dark Steel Helm",
@@ -395,6 +397,8 @@ const nameBySetByGear = {
         RiposteSet: "Helmet of Agony",
         WarfareSet: "Helmet of Agony",
         PursuitSet: "Helmet of Agony",
+        WeakeningSet: "Weakening Helmet Core",
+        FervorSet: "Fervor Helmet Core",
     },
     Armor: {
         HealthSet: "Dark Steel Armor",
@@ -419,6 +423,8 @@ const nameBySetByGear = {
         RiposteSet: "Armor of Agony",
         WarfareSet: "Armor of Agony",
         PursuitSet: "Armor of Agony",
+        WeakeningSet: "Weakening Armor Core",
+        FervorSet: "Fervor Armor Core",
     },
     Necklace: {
         HealthSet: "Dark Steel Warmer",
@@ -443,6 +449,8 @@ const nameBySetByGear = {
         RiposteSet: "Shackles of Agony",
         WarfareSet: "Restraints of Agony",
         PursuitSet: "Restraints of Agony",
+        WeakeningSet: "Weakening Necklace Core",
+        FervorSet: "Fervor Necklace Core",
     },
     Ring: {
         HealthSet: "Dark Steel Gauntlet",
@@ -467,6 +475,8 @@ const nameBySetByGear = {
         RiposteSet: "Ring of Agony",
         WarfareSet: "Ring of Agony",
         PursuitSet: "Ring of Agony",
+        WeakeningSet: "Weakening Ring Core",
+        FervorSet: "Fervor Ring Core",
     },
     Boots: {
         HealthSet: "Dark Steel Boots",
@@ -491,6 +501,8 @@ const nameBySetByGear = {
         RiposteSet: "Boots of Agony",
         WarfareSet: "Boots of Agony",
         PursuitSet: "Boots of Agony",
+        WeakeningSet: "Weakening Boots Core",
+        FervorSet: "Fervor Boots Core",
     }
 }
 
@@ -519,6 +531,8 @@ const reforgedNameBySetByGear = {
         RiposteSet: "Bow of Grudges",
         WarfareSet: "Bow of Grudges",
         PursuitSet: "Bow of Grudges",
+        WeakeningSet: "Weakening Weapon Core",
+        FervorSet: "Fervor Weapon Core",
     },
     Helmet: {
         HealthSet: "Dark Helm",
@@ -543,6 +557,8 @@ const reforgedNameBySetByGear = {
         RiposteSet: "Helmet of Grudges",
         WarfareSet: "Helmet of Grudges",
         PursuitSet: "Helmet of Grudges",
+        WeakeningSet: "Weakening Helmet Core",
+        FervorSet: "Fervor Helmet Core",
     },
     Armor: {
         HealthSet: "Dark Armor",
@@ -567,6 +583,8 @@ const reforgedNameBySetByGear = {
         RiposteSet: "Armor of Grudges",
         WarfareSet: "Armor of Grudges",
         PursuitSet: "Armor of Grudges",
+        WeakeningSet: "Weakening Armor Core",
+        FervorSet: "Fervor Armor Core",
     },
     Necklace: {
         HealthSet: "Dark Warmer",
@@ -591,6 +609,8 @@ const reforgedNameBySetByGear = {
         RiposteSet: "Shackles of Grudges",
         WarfareSet: "Cross of Grudges",
         PursuitSet: "Cross of Grudges",
+        WeakeningSet: "Weakening Necklace Core",
+        FervorSet: "Fervor Necklace Core",
     },
     Ring: {
         HealthSet: "Dark Gauntlet",
@@ -615,6 +635,8 @@ const reforgedNameBySetByGear = {
         RiposteSet: "Ring of Grudges",
         WarfareSet: "Curse of Grudges",
         PursuitSet: "Curse of Grudges",
+        WeakeningSet: "Weakening Ring Core",
+        FervorSet: "Fervor Ring Core",
     },
     Boots: {
         HealthSet: "Dark Boots",
@@ -639,6 +661,8 @@ const reforgedNameBySetByGear = {
         RiposteSet: "Boots of Grudges",
         WarfareSet: "Boots of Grudges",
         PursuitSet: "Boots of Grudges",
+        WeakeningSet: "Weakening Boots Core",
+        FervorSet: "Fervor Boots Core",
     }
 }
 
