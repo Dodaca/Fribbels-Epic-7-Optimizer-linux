@@ -15,7 +15,7 @@ provides=(fribbles-e7-optimizer)
 conflicts=()
 replaces=()
 
-source=("FribbelsE7Optimizer-$origver.zip"
+source=("release/FribbelsE7Optimizer-$origver.zip"
 		)
 noextract=(
 "FribbelsE7Optimizer-$origver.zip"	
