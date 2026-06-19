@@ -70,6 +70,14 @@ jobs:
           content = re.sub(r'const currentVersion = \".*\";', f'const currentVersion = \"$VERSION\";', content)
           with open(path, 'w') as f:
               f.write(content)
+
+          path = 'PKGBUILD'
+          with open(path, 'r') as f:
+              content = f.read()
+          content = re.sub(r'pkgver=.*\n', f'pkgver=$VERSION\n', content)
+          with open(path, 'w') as f:
+              f.write(content)
+
           print(f'Updated {path} to version $VERSION')
           "
 
@@ -96,13 +104,16 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: yarn package 
           #npx electron-builder build --linux zip --x64 --publish always
+      
+      - name: Build and check with makepkg
+        uses: edlanglois/pkgbuild-action@v1
 
       - name: Upload to github(Linux)
         uses: xresloader/upload-to-github-release@v1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "release/*.zip;"
+          file: "release/*.zip; *.pkg.tar.zst "
           overwrite: true
           verbose: true
           tags: true
