@@ -71,6 +71,14 @@ jobs:
           with open(path, 'w') as f:
               f.write(content)
 
+          path = 'release/PKGBUILD'
+          with open(path, 'r') as f:
+              content = f.read()
+          content = re.sub(r'origver=.*\n', f'origver=$VERSION\n', content)
+          content = re.sub(r'pkgver=.*\n', f'pkgver=$VERSION\n'.replace('-',''), content)
+          with open(path, 'w') as f:
+              f.write(content)
+
           path = 'PKGBUILD'
           with open(path, 'r') as f:
               content = f.read()
@@ -108,6 +116,8 @@ jobs:
       
       - name: Build and check with makepkg
         uses: edlanglois/pkgbuild-action@v1
+        with:
+          pkgdir: "release/"
 
       - name: Upload to github(Linux)
         uses: xresloader/upload-to-github-release@v1

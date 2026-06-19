@@ -1,4 +1,3 @@
-#This is the PKGBUILD to build from GIT rather than use Prepacked .tar
 # Maintainer: Dominik Lampl <lampl.dominik@web.de>
 pkgname=fribbles-e7-offline
 pkgver=1.12.0
@@ -16,12 +15,12 @@ provides=(fribbles-e7-optimizer)
 conflicts=()
 replaces=()
 
-source=("https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/download/v$origver/FribbelsE7Optimizer-$origver.zip"
+source=("FribbelsE7Optimizer-$origver.zip"
 		)
 noextract=(
 "FribbelsE7Optimizer-$origver.zip"	
 )
-sha256sums=(b29d59426ca3869a696ada605a37645b6b08cb0791331b2d04a97da5bf67bebe)
+sha256sums=(SKIP)
 #validpgpkeys=()
 
 package() {
