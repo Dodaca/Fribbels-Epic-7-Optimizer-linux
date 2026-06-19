@@ -119,12 +119,35 @@ jobs:
         with:
           pkgdir: "release/"
 
+      - name: Prepare general PKGBUILD
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          python3 -c "
+          import re
+          import hashlib
+          path = 'release/FribbelsE7Optimizer-1.12.0-offline-linux.zip'
+          m = hashlib.sha256()
+          with open(path, 'rb') as f:
+            m.update(f.read())
+          sha256sum= m.hexdigest()
+
+          path = 'PKGBUILD'
+          with open(path, 'r') as f:
+              content = f.read()
+          content = re.sub(r'sha256sums=(.*)', f'sha256sums=({sha256sum})', content)
+          with open(path, 'w') as f:
+              f.write(content)
+
+          print(f'Updated {path} Hash')
+          "
+
+
       - name: Upload to github(Linux)
         uses: xresloader/upload-to-github-release@v1
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "release/*.zip; release/*.pkg.tar.zst"
+          file: "release/*.zip; release/*.pkg.tar.zst; PKGBUILD "
           overwrite: true
           verbose: true
           tags: true

@@ -21,7 +21,7 @@ source=("https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/down
 noextract=(
 "FribbelsE7Optimizer-$origver.zip"	
 )
-sha256sums=(b29d59426ca3869a696ada605a37645b6b08cb0791331b2d04a97da5bf67bebe)
+sha256sums=(nonesense)
 #validpgpkeys=()
 
 package() {
