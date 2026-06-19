@@ -125,7 +125,7 @@ jobs:
           python3 -c "
           import re
           import hashlib
-          path = 'release/FribbelsE7Optimizer-1.12.0-offline-linux.zip'
+          path = f'release/FribbelsE7Optimizer-$VERSIONS.zip'
           m = hashlib.sha256()
           with open(path, 'rb') as f:
             m.update(f.read())
