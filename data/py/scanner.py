@@ -10,6 +10,8 @@ existingIpIds = {}
 existingTcpSeqs = {}
 loads = {}
 
+conf.use_pcap = True
+
 def try_buffer(currAck):
     buffers = acks[currAck];
 
