@@ -2,10 +2,10 @@
 
 This is a tool for organizing gear and optimizing gear and unit builds for Epic 7. Gearing units can be time consuming and it's not easy to find optimal combinations of gear within the game, so I made this to help make the gearing process easier.
 
-Please see the [**Getting Started**](https://github.com/fribbels/Fribbels-Epic-7-Optimizer#getting-started) section for instructions on how to use the optimizer.
+Please see the [**Getting Started**](https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux#getting-started) section for instructions on how to use the optimizer.
 
 Features include:
- - Automatically import gear and heroes from the game(Currently not working in this version)
+ - Automatically import gear and heroes from the game(Recently fixed and might still be bugged)
  - Filter gear optimizer with main stats/sub stats/sets/etc
  - Automatic data updates for new heroes
  - Hero bonus stats for imprints/artifacts/EEs
@@ -20,16 +20,18 @@ Here's what it looks like currently:
 
 # Linux Specific parts
 Most of the code relating to file paths have been changed to use nodes path module for cross compatibility. GPU acceleration works as long as you have an opencl implementation. The Scapy packet capture is working although the program will ask for Password to run the required Python script with elevated Permissions.
-The Data capture, at least on my system, seems to be somewhat unstable. Make sure your system is running stable and your internet connection is properly setup. Due to running the Pythons script with elevated privilages it should work out of the box with most NFtable and IPtable firewall setup
+The Data capture, at least on my system, seems to be somewhat unstable(Hopefully fixed). Make sure your system is running stable and your internet connection is properly setup. Due to running the Pythons script with elevated privilages it should work out of the box with most NFtable and IPtable firewall setup
 
 ## TODO
- - Test if auto updating with new units is working
+ - Implement full version upgrade using package manager
+ - Add support for package manager besides packman
  - Bugfixing to a certain extend.
 
 ## Requirements
 - 64-bit Linux Installation
 - Java 8+, 64-Bit installed (jre8-openjdk works as well)
 - System wide Python3 Installation (If you run into Problems with the import try installing a gloabl Scapy version)
+- libpcap for Scapy to collect Packages
 
 
 
@@ -281,6 +283,7 @@ Please read these instructions carefully! Here is a step by step video guide to 
 64 bit Java8 enviroment required.
 
 Install  **jre8-openjdk** through your systems package manager.
+If using PKGBUILD requirements will be installed automatically.
 For Arch based system the command should be as follows:
 
     sudo pacman -S jre8-openjdk jdk8-openjdk
@@ -322,6 +325,9 @@ The automatic importer is recommended and requires these additional steps:
 In case of Arch based System the command should be as follows:
 
     sudo pacman -S scapy
+Additionally it is recommended to install 'libpcap' to more reliably intecept the required network packages.
+
+    sudo pacman -S libpcap
 
 ##### First time setup for the automatic importer on Windows
 
