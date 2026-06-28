@@ -284,7 +284,12 @@ Please read these instructions carefully! Here is a step by step video guide to 
 
 Install  **jre8-openjdk** through your systems package manager.
 If using PKGBUILD requirements will be installed automatically.
-For Arch based system the command should be as follows:
+To install using PKGBUILD download the PKGBUILD of the release, move it to a seperate directory before performing the following commands:
+
+    cd path/to/PKGBUILD/dir
+    makepkg -si
+
+For manual install of Dependencies on an Arch based system the command should be as follows:
 
     sudo pacman -S jre8-openjdk jdk8-openjdk
 
@@ -325,9 +330,10 @@ The automatic importer is recommended and requires these additional steps:
 In case of Arch based System the command should be as follows:
 
     sudo pacman -S scapy
-Additionally it is recommended to install 'libpcap' to more reliably intecept the required network packages.
+Additionally it is recommended to install 'libpcap' to more reliably intecept the required network packages. libpcap comes preinstalled on most Distros.
 
     sudo pacman -S libpcap
+If you are not on an Arch based system please consult your own Package Manager to install these Dependencies. (apt-get for most Ubuntu and Debian based Distros)
 
 ##### First time setup for the automatic importer on Windows
 
