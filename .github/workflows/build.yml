@@ -59,10 +59,12 @@ jobs:
       - name: Sync Version
         if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
+        env:
+          Data: ${{steps.get_release.outputs.data}}
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          BODY= ${{steps.get_release.outputs.data}}
-          echo $BODY
+          BODY= "$DATA" | jq -r '.body'
+          echo %BODY
           echo "Syncing version to $VERSION"
           
           # Update package.json versions
