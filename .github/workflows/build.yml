@@ -61,7 +61,7 @@ jobs:
         shell: bash
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          BODY= ${{steps.get_release.outputs.data}}.body
+          BODY= ${{steps.get_release.outputs.data}}
           echo $BODY
           echo "Syncing version to $VERSION"
           
