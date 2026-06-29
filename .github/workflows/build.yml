@@ -47,12 +47,21 @@ jobs:
         run: |
           sed -i '' "s/reload(sys)/import importlib; importlib.reload(sys)/g" node_modules/dmg-builder/vendor/dmgbuild/core.py
           sed -i '' "s/sys.setdefaultencoding('UTF8')/pass/g" node_modules/dmg-builder/vendor/dmgbuild/core.py
+        
+      - name: Fetch Release messages from Tag
+        id: get_release
+        uses: octokit/request-action@v2.4.0
+        with:
+          route: GET /repos/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Sync Version
         if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
+          BODY= ${ steps.get_release.outputs.data } | jq -r '.[-1].body'
           echo "Syncing version to $VERSION"
           
           # Update package.json versions
@@ -67,6 +76,7 @@ jobs:
           path = 'app/js/lib/updater.js'
           with open(path, 'r') as f:
               content = f.read()
+          content = re.sub(r'Dialog.showNewFeatures(marked.parse(.*));', f'Dialog.showNewFeatures(marked.parse(\`$BODY\`));', content)
           content = re.sub(r'const currentVersion = \".*\";', f'const currentVersion = \"$VERSION\";', content)
           with open(path, 'w') as f:
               f.write(content)

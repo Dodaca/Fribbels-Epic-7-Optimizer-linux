@@ -1,7 +1,7 @@
 const { ipcRenderer } = require('electron');
 const { marked } = require('marked');
 global.ipcRenderer = ipcRenderer;
-const currentVersion = "1.12.1-offline-linux-test";
+const currentVersion = "1.12.1-offline-linux";
 global.marked = marked;
 
 global.TEST = false;
@@ -37,26 +37,33 @@ module.exports = {
         return currentVersion;
     },
     showNewFeatures: (text) => {
-        Dialog.showNewFeatures(
+        Dialog.showNewFeatures(marked.parse(
 
 `
-<h2>
-    New in v1.10.0
-</h2>
-<ul class="newFeatures">
-    <li>Added new Riposte and Reversal Sets</li>
-    <li>Added support for defense stat artifacts</li>
-    <li>Fixed various bugs</li>
-</ul>
+# New in v1.12.1-offline-linux
+
+  - Added all new Heroes up to **Eye of the Abyss Fumyr**
+  
+# Notes
+  - Other packing Methods for Debian and Ubuntu may be added upon request
+  - Load heroes and artifacts from offline cache by default
+  - Updated heroes up to **Eye of the Abyss Fumyr** with all previous hero changes adjusted
+  - Updated Chinese and Traditional Chinese translations for heroes and artifacts
+  - This version has not been thoroughly tested
+  - Note that the Auto updated WON'T update to this version and a manual reinstall is required.
+
+# Contributions
+
+This version will follow RexQians offline version at https://github.com/RexQian/Fribbels-Epic-7-Optimizer and possible Fribbles version if it is ever ahead of time. I will continue to only do minor work trying to have these versions work under Linux.
+Thanks to these two for making this possible.
 `
-        );
+        ));
     },
 
 
    
 
     checkForUpdates: async () => {
-        runUpdate()
         
          async function runUpdate () {
                  try {
@@ -65,8 +72,9 @@ module.exports = {
              const latestDataJson = JSON.parse(latestDataText);
              const latestVersion = latestDataJson.tag_name;
              const latestBody = latestDataJson.body;
-
-             if (latestVersion != currentVersion) {
+                console.log("Current Version: "+ currentVersion)
+                console.log("Latest Version : " + latestVersion)
+             if (latestVersion != "v"+currentVersion) {
                  Notifier.info(i18next.t("Update found!"));
                  const shell = require('electron').shell;
 
@@ -130,5 +138,6 @@ module.exports = {
 
             ipcRenderer.send('check');
         });
+        runUpdate()
     }
 }
