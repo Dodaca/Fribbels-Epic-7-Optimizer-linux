@@ -40,7 +40,10 @@ jobs:
           cache: 'yarn'
 
       - name: Install Dependencies
-        run: yarn install
+        run:  yarn install
+              cd app 
+              yarn install
+              cd 
 
       - name: Patch dmg-builder for Python 3
         if: matrix.os == 'macos-latest'

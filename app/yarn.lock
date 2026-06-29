@@ -1350,6 +1350,11 @@ lru-cache@^4.0.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+marked@6:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-6.0.0.tgz#80cd7f51145437cffe9f541a318b9882f75601df"
+  integrity sha512-7E3m/xIlymrFL5gWswIT4CheIE3fDeh51NV09M4x8iOc7NDYlyERcQMLAIHcSlrvwliwbPQ4OGD+MpPSYiQcqw==
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz"
