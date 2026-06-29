@@ -63,7 +63,7 @@ jobs:
           DATA: ${{steps.get_release.outputs.data}}
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          BODY= "$DATA" | jq -r '.body'
+          BODY= "$DATA" | jq '.body'
           echo %BODY
           echo "Syncing version to $VERSION"
           
