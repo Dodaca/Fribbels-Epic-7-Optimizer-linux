@@ -53,18 +53,16 @@ jobs:
         uses: octokit/request-action@v2.4.0
         with:
           route: GET /repos/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Sync Version
         if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
         env:
           DATA: ${{steps.get_release.outputs.data}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          BODY= "$DATA" | jq '.body'
-          echo %BODY
+          BODY= gh release view --json body -q .body
           echo "Syncing version to $VERSION"
           
           # Update package.json versions

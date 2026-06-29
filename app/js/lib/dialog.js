@@ -194,7 +194,7 @@ module.exports = {
         Swal.fire({
             icon: 'success',
             html: html,
-            width: 700,
+            width: 1000,
             confirmButtonText: i18next.t("OK"),
             allowOutsideClick: outsideClickDisable
             // cancelButtonText: i18next.t("Cancel")
