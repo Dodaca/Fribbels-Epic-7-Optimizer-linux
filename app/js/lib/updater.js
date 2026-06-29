@@ -1,6 +1,8 @@
 const { ipcRenderer } = require('electron');
+const { marked } = require('marked');
 global.ipcRenderer = ipcRenderer;
-const currentVersion = "1.12.0-offline-linux-test";
+const currentVersion = "1.12.1-offline-linux-test";
+global.marked = marked;
 
 global.TEST = false;
 
@@ -50,15 +52,22 @@ module.exports = {
         );
     },
 
+
+   
+
     checkForUpdates: async () => {
+        runUpdate()
         
-         try {
+         async function runUpdate () {
+                 try {
              const latestData = await fetch('https://api.github.com/repos/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest')
              const latestDataText = await latestData.text();
              const latestDataJson = JSON.parse(latestDataText);
              const latestVersion = latestDataJson.tag_name;
+             const latestBody = latestDataJson.body;
 
              if (latestVersion != currentVersion) {
+                 Notifier.info(i18next.t("Update found!"));
                  const shell = require('electron').shell;
 
                  // assuming $ is jQuery
@@ -67,12 +76,59 @@ module.exports = {
                      shell.openExternal(this.href);
                  });
 
-                 Dialog.htmlSuccessDisableOutsideClick(i18next.t("New version available: <a href='https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/tag/v1.12.1-offline-linux'>") + latestVersion + "<a>");
+                 Dialog.htmlSuccessDisableOutsideClick(i18next.t(
+
+                    "New version available: <a href='https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest'>") + latestVersion + '</a>' + marked.parse(latestBody));
              }
+             else(
+                 Notifier.info(i18next.t("Already on the latest Version."))
+             )
 
              // console.error(latestDataJson);
          } catch (e) {
              console.error(e)
          }
-    }}
-    
+
+    }
+        const version = document.getElementById('version');
+        version.innerText = ": v" + currentVersion;
+
+        ipcRenderer.on('update_available', () => {
+            Notifier.info(i18next.t("New version available, downloading now"));
+        });
+        ipcRenderer.on('update-not-available', () => {
+        });
+        ipcRenderer.on('test', (arg1, arg2) => {
+            console.log("test", arg1, arg2)
+        });
+        ipcRenderer.on('check', (arg1, arg2) => {
+            runUpdate();
+        });
+        ipcRenderer.on('update_downloaded', async (arg1, arg2) => {
+            console.log("update_downloaded", arg1, arg2)
+            var response = await Dialog.updatePrompt("Update downloaded. It will be installed on restart. Restart app now?")
+
+            if (response == 'restart') {
+                await Subprocess.kill();
+                restartApp();
+            }
+        });
+
+        function restartApp() {
+            ipcRenderer.send('restart_app');
+        }
+
+
+        document.getElementById('checkForUpdatesSubmit').addEventListener("click", async () => {
+            Notifier.info(i18next.t("Checking for updates"));
+
+            try {
+                await HeroData.initialize();
+            } catch (e) {
+                console.error("Error refreshing hero data " + e)
+            }
+
+            ipcRenderer.send('check');
+        });
+    }
+}

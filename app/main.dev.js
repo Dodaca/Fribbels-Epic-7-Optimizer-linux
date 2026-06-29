@@ -11,9 +11,10 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, ipcMain, Menu, MenuItem } from 'electron';
-import { autoUpdater } from 'electron-updater';
+import { app, BrowserWindow, ipcMain, ipcRenderer, Menu, MenuItem } from 'electron';
+//import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { marked } from 'marked';
 const remoteMain = require("@electron/remote/main");
 // import MenuBuilder from './menu';
 
@@ -96,14 +97,14 @@ const template = [
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
 
-export default class AppUpdater {
-  constructor() {
-    log.transports.file.level = 'info';
-    autoUpdater.logger = log;
-    autoUpdater.allowDowngrade = true;
-    autoUpdater.checkForUpdatesAndNotify();
-  }
-}
+//export default class AppUpdater {
+//  constructor() {
+//    log.transports.file.level = 'info';
+//    autoUpdater.logger = log;
+//    autoUpdater.allowDowngrade = true;
+//    //autoUpdater.checkForUpdatesAndNotify();
+//  }
+//}
 
 console.log("main.dev.ts");
 
@@ -215,7 +216,7 @@ const createWindow = async () => {
   });
 
   mainWindow.once("ready-to-show", () => {
-    autoUpdater.checkForUpdatesAndNotify();
+    //autoUpdater.checkForUpdatesAndNotify();
   });
 
 
@@ -225,7 +226,7 @@ const createWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
 
-  new AppUpdater();
+  //new AppUpdater();
 
   require('update-electron-app')({
     repo: 'fribbels/Fribbels-Epic-7-Optimizer',
@@ -264,31 +265,31 @@ ipcMain.on('app_version', (event) => {
 });
 
 
-ipcMain.on('test', async (event) => {
-  const updates = await autoUpdater.checkForUpdates()
-  console.log("TEST UPDATES")
-  console.log(updates)
-  event.sender.send('test', JSON.stringify(updates));
-});
+//ipcMain.on('test', async (event) => {
+//  const updates = await autoUpdater.checkForUpdates()
+//  console.log("TEST UPDATES")
+//  console.log(updates)
+//  event.sender.send('test', JSON.stringify(updates));
+//});
 
 ipcMain.on('check', async (event) => {
-  const updates = await autoUpdater.checkForUpdatesAndNotify()
-  console.log(updates)
-  event.sender.send('check', updates);
+  //const updates = await autoUpdater.checkForUpdatesAndNotify()
+  //console.log(updates)
+  event.sender.send('check');
 });
 
 ipcMain.on('restart_app', () => {
-  autoUpdater.quitAndInstall();
+  //autoUpdater.quitAndInstall();
 });
 
-autoUpdater.on('update-available', (data) => {
-  mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', (data) => {
-  console.log("DOWNLOADED");
-  console.log(data);
-  mainWindow.webContents.send('update_downloaded', data);
-});
-autoUpdater.on('update-not-available', () => {
-  mainWindow.webContents.send('update_not_available');
-});
+//autoUpdater.on('update-available', (data) => {
+//  //mainWindow.webContents.send('update_available');
+//});
+//autoUpdater.on('update-downloaded', (data) => {
+//  console.log("DOWNLOADED");
+//  console.log(data);
+//  //mainWindow.webContents.send('update_downloaded', data);
+//});
+//autoUpdater.on('update-not-available', () => {
+//  //mainWindow.webContents.send('update_not_available');
+//});
