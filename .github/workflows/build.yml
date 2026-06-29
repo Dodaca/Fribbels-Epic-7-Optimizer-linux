@@ -52,11 +52,10 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         shell: bash
         env:
-          DATA: ${{steps.get_release.outputs.data}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          BODY= gh release view --json body -q .body
+          BODY="$(gh release view --json body -q .body | cat -E)"
           echo "Syncing version to $VERSION"
           
           # Update package.json versions
