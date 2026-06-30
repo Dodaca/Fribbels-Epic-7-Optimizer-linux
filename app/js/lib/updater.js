@@ -95,7 +95,7 @@ Thanks to these two for making this possible.
 
                     if (response == 'restart') {
                         console.log("Starting update scricpt:")
-                        childProcess.spawn(path.join(Files.getDataPath(), 'update.bash'), [latestDataJson.assets[2].browser_download_url], detached=true )
+                        childProcess.spawn(path.join(Files.getDataPath(), 'update.bash'), [latestDataJson.assets[2].browser_download_url], {detached:true} )
                     }
              
                 }
