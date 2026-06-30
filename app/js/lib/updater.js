@@ -1,6 +1,5 @@
 var childProcess = require('child_process')
 const path = require('path');
-const { stdout } = require('process');
 const { ipcRenderer } = require('electron');
 const { marked } = require('marked');
 global.ipcRenderer = ipcRenderer;
@@ -95,7 +94,8 @@ Thanks to these two for making this possible.
 
                     if (response == 'restart') {
                         console.log("Starting update scricpt:")
-                        childProcess.spawn(path.join(Files.getDataPath(), 'update.bash'), [latestDataJson.assets[2].browser_download_url], {detached:true} )
+                        childProcess.spawn(path.join(Files.getDataPath(), 'update.bash'), [latestDataJson.assets[2].browser_download_url], {detached:true, stdio: 'ignore'} )
+                        restartApp()
                     }
              
                 }
