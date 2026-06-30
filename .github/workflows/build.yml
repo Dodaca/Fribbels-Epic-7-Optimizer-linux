@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          export BODY="$(gh release view --json body -q .body | cat)"
+          export BODY="$(gh release view --json body -q .body | cat -E)"
           echo "Syncing version to $VERSION"
           # Update package.json versions
           npm version $VERSION --no-git-tag-version --allow-same-version
@@ -67,10 +67,12 @@ jobs:
           python3 -c "
           import re
           import os
+          text= os.environ['BODY'].replace(r'^M$', '')
+          print(text)
           path = 'app/js/lib/updater.js'
           with open(path, 'r') as f:
               content = f.read()
-          content = re.sub(r'Dialog.showNewFeatures(\n|\r|.)*},', f'''Dialog.showNewFeatures(marked.parse(\`{os.environ['BODY']}\`));}},''', content)
+          content = re.sub(r'Dialog.showNewFeatures(\n|\r|.)*},', f'''Dialog.showNewFeatures(marked.parse(\`{text}\`));}},''', content)
           content = re.sub(r'const currentVersion = \".*\";', f'const currentVersion = \"$VERSION\";', content)
           with open(path, 'w') as f:
               f.write(content)
