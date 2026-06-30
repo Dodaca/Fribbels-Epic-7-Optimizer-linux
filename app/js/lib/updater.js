@@ -89,7 +89,7 @@ Thanks to these two for making this possible.
                  await Dialog.htmlSuccessDisableOutsideClick(i18next.t(
 
                     "New version available: <a href='https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest'>") + latestVersion + '</a>' + marked.parse(latestBody));
-                    var response = await Dialog.updatePrompt("Run Update?(Requires Arch Based Distro/ Pacman package manager)")
+                    var response = await Dialog.updatePrompt("Restart and run Update?(Requires Arch Based Distro/ Pacman package manager)")
                     
 
                     if (response == 'restart') {
