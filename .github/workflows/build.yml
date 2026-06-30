@@ -55,9 +55,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=${GITHUB_REF#refs/tags/v}
-          BODY="$(gh release view --json body -q .body | cat -E)"
+          export BODY="$(gh release view --json body -q .body | cat)"
           echo "Syncing version to $VERSION"
-          
           # Update package.json versions
           npm version $VERSION --no-git-tag-version --allow-same-version
           cd app
@@ -67,10 +66,11 @@ jobs:
           # Update updater.js using Python for cross-platform compatibility
           python3 -c "
           import re
+          import os
           path = 'app/js/lib/updater.js'
           with open(path, 'r') as f:
               content = f.read()
-          content = re.sub(r'Dialog.showNewFeatures(\n|\r|.)*},', r'''Dialog.showNewFeatures(marked.parse(`$BODY`));},''', content)
+          content = re.sub(r'Dialog.showNewFeatures(\n|\r|.)*},', f'''Dialog.showNewFeatures(marked.parse(\`{os.environ['BODY']}\`));}},''', content)
           content = re.sub(r'const currentVersion = \".*\";', f'const currentVersion = \"$VERSION\";', content)
           with open(path, 'w') as f:
               f.write(content)
