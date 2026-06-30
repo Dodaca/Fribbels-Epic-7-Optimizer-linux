@@ -13,6 +13,7 @@ Features include:
  - Reforged stat prediction & editing
  - Color coded results sorting
  - Substat modification optimization
+ - Automatic Update checker and Installer (Later limited to Arch based Distros)
 
 Here's what it looks like currently:
 
@@ -23,8 +24,8 @@ Most of the code relating to file paths have been changed to use nodes path modu
 The Data capture, at least on my system, seems to be somewhat unstable(Hopefully fixed). Make sure your system is running stable and your internet connection is properly setup. Due to running the Pythons script with elevated privilages it should work out of the box with most NFtable and IPtable firewall setup
 
 ## TODO
- - Implement full version upgrade using package manager
- - Add support for package manager besides packman
+ - Implement full version upgrade using package manager(Implemented for Arch based Distros)
+ - Add support for package manager besides pacman(Upon request)
  - Bugfixing to a certain extend.
 
 ## Requirements
