@@ -70,7 +70,7 @@ jobs:
           path = 'app/js/lib/updater.js'
           with open(path, 'r') as f:
               content = f.read()
-          content = re.sub(r'Dialog.showNewFeatures(marked.parse(.*));', f'''Dialog.showNewFeatures(marked.parse(\`$BODY\`));''', content)
+          content = re.sub(r'''Dialog.showNewFeatures(marked.parse(.*));''', f'''Dialog.showNewFeatures(marked.parse(\`$BODY\`));''', content)
           content = re.sub(r'const currentVersion = \".*\";', f'const currentVersion = \"$VERSION\";', content)
           with open(path, 'w') as f:
               f.write(content)
