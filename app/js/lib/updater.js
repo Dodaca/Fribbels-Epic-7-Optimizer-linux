@@ -1,3 +1,6 @@
+var childProcess = require('child_process')
+const path = require('path');
+const { stdout } = require('process');
 const { ipcRenderer } = require('electron');
 const { marked } = require('marked');
 global.ipcRenderer = ipcRenderer;
@@ -84,10 +87,18 @@ Thanks to these two for making this possible.
                      shell.openExternal(this.href);
                  });
 
-                 Dialog.htmlSuccessDisableOutsideClick(i18next.t(
+                 await Dialog.htmlSuccessDisableOutsideClick(i18next.t(
 
                     "New version available: <a href='https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest'>") + latestVersion + '</a>' + marked.parse(latestBody));
-             }
+                    var response = await Dialog.updatePrompt("Run Update?(Requires Arch Based Distro/ Pacman package manager)")
+                    
+
+                    if (response == 'restart') {
+                        console.log("Starting update scricpt:")
+                        childProcess.spawn(path.join(Files.getDataPath(), 'update.bash'), [latestDataJson.assets[2].browser_download_url], detached=true )
+                    }
+             
+                }
              else(
                  Notifier.info(i18next.t("Already on the latest Version."))
              )

@@ -130,6 +130,7 @@ module.exports = {
     },
 
     htmlSuccessDisableOutsideClick: (html) => {
+        return new Promise((resolve, reject) => {
         Swal.fire({
             icon: 'success',
             html: html,
@@ -137,6 +138,13 @@ module.exports = {
             confirmButtonText: i18next.t("OK"),
             allowOutsideClick: outsideClickDisable
             // cancelButtonText: i18next.t("Cancel")
+        }).then((result) => {
+                if (result.isConfirmed) {
+                    resolve("restart");
+                } else if (result.isDenied) {
+                    reject("skip");
+                }
+            })
         })
     },
 

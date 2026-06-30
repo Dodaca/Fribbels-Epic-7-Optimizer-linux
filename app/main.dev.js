@@ -280,6 +280,7 @@ ipcMain.on('check', async (event) => {
 
 ipcMain.on('restart_app', () => {
   //autoUpdater.quitAndInstall();
+
 });
 
 //autoUpdater.on('update-available', (data) => {
