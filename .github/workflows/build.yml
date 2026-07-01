@@ -80,7 +80,7 @@ jobs:
           path = 'release/PKGBUILD'
           with open(path, 'r') as f:
               content = f.read()
-          content = re.sub(r'origver=.*\n', f'origver=$VERSION\n', content)
+          content = re.sub(r'_origver=.*\n', f'_origver=$VERSION\n', content)
           content = re.sub(r'pkgver=.*\n', f'pkgver=$VERSION\n'.replace('-',''), content)
           with open(path, 'w') as f:
               f.write(content)
@@ -88,7 +88,7 @@ jobs:
           path = 'PKGBUILD'
           with open(path, 'r') as f:
               content = f.read()
-          content = re.sub(r'origver=.*\n', f'origver=$VERSION\n', content)
+          content = re.sub(r'_origver=.*\n', f'_origver=$VERSION\n', content)
           content = re.sub(r'pkgver=.*\n', f'pkgver=$VERSION\n'.replace('-',''), content)
           with open(path, 'w') as f:
               f.write(content)

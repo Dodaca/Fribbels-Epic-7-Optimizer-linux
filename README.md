@@ -13,7 +13,7 @@ Features include:
  - Reforged stat prediction & editing
  - Color coded results sorting
  - Substat modification optimization
- - Automatic Update checker and Installer (Later limited to Arch based Distros)
+ - Automatic Update checker and Installer script
 
 Here's what it looks like currently:
 

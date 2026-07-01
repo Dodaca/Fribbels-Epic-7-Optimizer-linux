@@ -89,12 +89,12 @@ Thanks to these two for making this possible.
                  await Dialog.htmlSuccessDisableOutsideClick(i18next.t(
 
                     "New version available: <a href='https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux/releases/latest'>") + latestVersion + '</a>' + marked.parse(latestBody));
-                    var response = await Dialog.updatePrompt("Restart and run Update?(Requires Arch Based Distro/ Pacman package manager)")
+                    var response = await Dialog.updatePrompt("Start interactive update script?")
                     
 
                     if (response == 'restart') {
                         console.log("Starting update scricpt:")
-                        childProcess.spawn(path.join(Files.getDataPath(), 'update.bash'), [latestDataJson.assets[2].browser_download_url], {detached:true, stdio: 'ignore'} )
+                        childProcess.spawn(path.join(Files.getDataPath(),'bash', 'find_terminal.bash'), [Files.getRootPath(), latestDataJson.assets[2].browser_download_url, latestDataJson.assets[0].browser_download_url], {detached:true, stdio: 'ignore'} )
                         restartApp()
                     }
              
