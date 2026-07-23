@@ -75,7 +75,7 @@ def thread_sniff():
         else:
             sniff(iface=get_working_ifaces(), prn=lambda x: check_packet(x), filter="tcp and ( port 5222 or port 3333 )", session=TCPSession)
     except:
-        pass
+        print("Error occured trying to call Scapy sniff!")
 
 x = threading.Thread(target=thread_sniff)
 x.daemon = True;
