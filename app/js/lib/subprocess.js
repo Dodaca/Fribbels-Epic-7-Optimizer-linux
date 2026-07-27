@@ -95,13 +95,14 @@ module.exports = {
             }
         }, 100)
 
-        child.on('close', (code) => {
-            console.log(`Java child process exited with code ${code}`);
+        child.on('close', (code, signal) => {
+            console.log(`Java child process exited with code ${code} or Signal ${signal}`);
 
-            if (code == 0 || killed == true) {
-                return;
-            }
-
+            //if (code == 0 || killed == true) {
+            //    return;
+            //}
+            
+            console.log(`Java child process exited with errors: ${errors}`);
             Notifier.error(`${i18next.t("Java subprocess errors")}: ${errors}`)
             Dialog.htmlError(defaultJavaError);
         });
