@@ -112,26 +112,25 @@ Thanks to these two for making this possible.
         const version = document.getElementById('version');
         version.innerText = ": v" + currentVersion;
 
-        ipcRenderer.on('update_available', () => {
-            Notifier.info(i18next.t("New version available, downloading now"));
-        });
-        ipcRenderer.on('update-not-available', () => {
-        });
-        ipcRenderer.on('test', (arg1, arg2) => {
-            console.log("test", arg1, arg2)
-        });
-        ipcRenderer.on('check', (arg1, arg2) => {
-            runUpdate();
-        });
-        ipcRenderer.on('update_downloaded', async (arg1, arg2) => {
-            console.log("update_downloaded", arg1, arg2)
-            var response = await Dialog.updatePrompt("Update downloaded. It will be installed on restart. Restart app now?")
-
-            if (response == 'restart') {
-                await Subprocess.kill();
-                restartApp();
-            }
-        });
+        //ipcRenderer.on('update_available', () => {
+        //    Notifier.info(i18next.t("New version available, downloading now"));
+        //});
+        //ipcRenderer.on('update-not-available', () => {
+        //});
+        //ipcRenderer.on('test', (arg1, arg2) => {
+        //    console.log("test", arg1, arg2)
+        //});
+        //ipcRenderer.on('check', (arg1, arg2) => {
+        //    runUpdate();
+        //});
+        //ipcRenderer.on('update_downloaded', async (arg1, arg2) => {
+        //    console.log("update_downloaded", arg1, arg2)
+        //    var response = await Dialog.updatePrompt("Update downloaded. It will be installed on restart. Restart app now?")
+        //    if (response == 'restart') {
+        //        await Subprocess.kill();
+        //        restartApp();
+        //    }
+        //});
 
         function restartApp() {
             ipcRenderer.send('restart_app');
@@ -147,7 +146,7 @@ Thanks to these two for making this possible.
                 console.error("Error refreshing hero data " + e)
             }
 
-            ipcRenderer.send('check');
+            runUpdate();
         });
         runUpdate()
     }

@@ -272,11 +272,11 @@ ipcMain.on('app_version', (event) => {
 //  event.sender.send('test', JSON.stringify(updates));
 //});
 
-ipcMain.on('check', async (event) => {
-  //const updates = await autoUpdater.checkForUpdatesAndNotify()
-  //console.log(updates)
-  event.sender.send('check');
-});
+//ipcMain.on('check', async (event) => {
+//  //const updates = await autoUpdater.checkForUpdatesAndNotify()
+//  //console.log(updates)
+//  event.sender.send('check');
+//});
 
 ipcMain.on('restart_app', () => {
   //autoUpdater.quitAndInstall();
