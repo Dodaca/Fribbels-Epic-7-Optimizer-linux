@@ -30,7 +30,7 @@ The Data capture, at least on my system, seems to be somewhat unstable(Hopefully
 
 ## Requirements
 - 64-bit Linux Installation
-- Java 8+, 64-Bit installed (jre8-openjdk works as well)
+- Java 8 or 25, 64-Bit installed (jre25-openjdk works well)
 - System wide Python3 Installation (If you run into Problems with the import try installing a gloabl Scapy version)
 - libpcap for Scapy to collect Packages
 
@@ -283,7 +283,7 @@ Please read these instructions carefully! Here is a step by step video guide to 
 
 64 bit Java8 enviroment required.
 
-Install  **jre8-openjdk** through your systems package manager.
+Install  **jre25-openjdk** through your systems package manager.
 If using PKGBUILD requirements will be installed automatically.
 To install using PKGBUILD download the PKGBUILD of the release, move it to a seperate directory before performing the following commands:
 
@@ -292,7 +292,7 @@ To install using PKGBUILD download the PKGBUILD of the release, move it to a sep
 
 For manual install of Dependencies on an Arch based system the command should be as follows:
 
-    sudo pacman -S jre8-openjdk jdk8-openjdk
+    sudo pacman -S jdk25-openjdk
 
 Consult your Distributions Package Hub for more information how to install the package. (Word of caution do NOT install using Flatpack or something similarly sandboxed unless you know what you're doing.)
 
