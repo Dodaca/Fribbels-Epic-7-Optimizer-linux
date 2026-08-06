@@ -67,7 +67,7 @@ module.exports = {
         var maxRamGb = parseInt(Settings.parseNumberValue('settingMaxRamGb') || 6);
 
         // child = spawn('java', ['-jar', '-XX:MaxRAMFraction=1', `"${Files.getDataPath() + '/jar/backend.jar'}"`], {
-        child = spawn('java', ['-jar', `-Xmx${maxRamGb}G`, `"${Files.getDataPath() + '/jar/backend.jar'}"`], {
+        child = spawn('java', ['--enable-native-access=ALL-UNNAMED','-jar', `-Xmx${maxRamGb}G`, `"${Files.getDataPath() + '/jar/backend.jar'}"`], {
             shell: true, stdio: ['pipe', 'pipe', 'pipe'], detached: false
         })
         pid = child.pid;

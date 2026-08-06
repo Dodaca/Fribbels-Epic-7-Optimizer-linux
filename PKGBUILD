@@ -9,7 +9,7 @@ arch=(x86_64)
 url=https://github.com/Dodaca/Fribbels-Epic-7-Optimizer-linux
 license=('unknown')
 options=('!strip' '!debug')
-depends=(jre8-openjdk unzip)
+depends=(jdk25-openjdk unzip)
 makedepends=(unzip)
 optdepends=('python: Required for the automatic Importer' 'libpcap: Required for the automatic Importer')
 provides=(fribbles-e7-optimizer)
@@ -38,7 +38,7 @@ package() {
 	cat > ${pkgdir}/usr/share/applications/fribbelse7optimizer.desktop << EOF
 [Desktop Entry]
 Name=FribbelsE7Optimizer
-Exec=fribbelse7optimizer
+Exec=sh -c 'export PATH="/usr/lib/jvm/java-25-openjdk/bin/:$PATH"; fribbelse7optimizer'
 Terminal=false
 Type=Application
 Icon=fribbelse7optimizer
